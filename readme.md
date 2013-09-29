@@ -10,6 +10,14 @@ TO-DO before publish
 For developer
 ============
 
+This project uses:
++	**Node.JS** for server
++	**Grunt** for tasks
++	**RequireJS** for control javascript files and requests
++	**Bower** for javascript dependences
++	**jQuery**
+
+
 OAuth2
 ------
 Created the CLIENT ID for OAuth2 from https://cloud.google.com/console

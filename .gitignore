@@ -1,5 +1,14 @@
+## Node.JS
 node_modules
 dist
 .tmp
-.sass-cache
-app/bower_components
+
+## SASS
+.sass-cache/
+
+## Windows
+Desktop.ini
+Thumbs.db
+
+## Sublime
+*.sublime-workspace
