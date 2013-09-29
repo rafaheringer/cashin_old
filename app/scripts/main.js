@@ -1,11 +1,42 @@
-console.log('\'Allo \'Allo!');
-chrome.identity.getAuthToken({ 'interactive': true }, function(token) {
-	if (chrome.runtime.lastError) {
-		console.log('FUUUUUUUUUUUU');
-	} else {
-		getUserInfo(true);
+"use strict";
+
+/* 
+ * Project: Cash in
+ * Developer: Rafael Heringer Carvalho
+ * Website: -
+ */
+
+
+/* =========================
+ * Paths and others configs
+ * ======================== */
+require.config({
+	nodeRequire: require,
+	paths: {
+		'jquery': 'vendor/jquery/jquery',
+		'underscore': 'vendor/underscore-amd/underscore',
+		'backbone': 'vendor/backbone-amd/backbone'
 	}
 });
+
+
+
+/* =================
+ * First Page Invoke
+ * ================= */
+require(['views/app'], function(AppView){
+	new AppView;
+});
+
+
+
+// chrome.identity.getAuthToken({ 'interactive': true }, function(token) {
+// 	if (chrome.runtime.lastError) {
+// 		console.log('FUUUUUUUUUUUU');
+// 	} else {
+// 		getUserInfo(true);
+// 	}
+// });
 
 
 

@@ -12,6 +12,8 @@ module.exports = function (grunt) {
     require('time-grunt')(grunt);
     // load all grunt tasks
     require('load-grunt-tasks')(grunt);
+    //Load require-js
+    var requirejs = require('requirejs');
 
     grunt.initConfig({
         // configurable paths
@@ -145,9 +147,9 @@ module.exports = function (grunt) {
         },
         // not used since Uglify task does concat,
         // but still available if needed
-        /*concat: {
+        concat: {
             dist: {}
-        },*/
+        },
         'bower-install': {
             app: {
                 html: '<%= yeoman.app %>/index.html',
@@ -266,16 +268,6 @@ module.exports = function (grunt) {
                 src: '{,*/}*.css'
             }
         },
-        modernizr: {
-            devFile: '<%= yeoman.app %>/bower_components/modernizr/modernizr.js',
-            outputFile: '<%= yeoman.dist %>/bower_components/modernizr/modernizr.js',
-            files: [
-                '<%= yeoman.dist %>/scripts/{,*/}*.js',
-                '<%= yeoman.dist %>/styles/{,*/}*.css',
-                '!<%= yeoman.dist %>/scripts/vendor/*'
-            ],
-            uglify: true
-        },
         concurrent: {
             server: [
                 'compass',
@@ -316,19 +308,35 @@ module.exports = function (grunt) {
         'mocha'
     ]);
 
-    grunt.registerTask('build', [
-        'clean:dist',
-        'useminPrepare',
-        'concurrent:dist',
-        'autoprefixer',
-        'concat',
-        'cssmin',
-        'uglify',
-        'modernizr',
-        'copy:dist',
-        'rev',
-        'usemin'
-    ]);
+    grunt.registerTask('build', function(){
+        // var config = {
+        //     appDir: './app',
+        //     baseUrl: './app/scripts',
+        //     out: './dist/ttt.js',
+        //     mainConfigFile: './app/scripts/main.js',
+        //     name: 'main',
+        //     optimizeCSS: 'standard'
+        // };
+
+        // requirejs.optimize(config, function (buildResponse) {
+        //     var contents = fs.readFileSync(config.out, 'utf8');
+        // }, function(err) {
+        //     console.log(err);
+        // });
+
+        grunt.task.run([
+            'clean:dist',
+            'useminPrepare',
+            'concurrent:dist',
+            'autoprefixer',
+            'concat',
+            'cssmin',
+            'uglify',
+            'copy:dist',
+            'rev',
+            'usemin'
+        ]);
+    });
 
     grunt.registerTask('default', [
         'jshint',
