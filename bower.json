@@ -5,7 +5,10 @@
     "jquery": "~1.10.2",
     "requirejs": "~2.1.8",
     "underscore-amd": "~1.5.2",
-    "backbone-amd": "~1.0.0"
+    "backbone-amd": "~1.0.0",
+    "requirejs-text": "~2.0.10",
+    "i18next": "~1.7.1",
+    "accounting": "~0.3.2"
   },
   "devDependencies": {}
 }

@@ -1,5 +1,3 @@
-
-
 TO-DO before publish
 ====================
 +	Create a cool description
@@ -10,12 +8,17 @@ TO-DO before publish
 For developer
 ============
 
-This project uses:
+This project use:
 +	**Node.JS** for server
++	**Handlebars** as template engine
++	**Backbone** as structure
 +	**Grunt** for tasks
 +	**RequireJS** for control javascript files and requests
 +	**Bower** for javascript dependences
 +	**jQuery**
++	**[Foundation Framework](http://foundation.zurb.com/docs/index.html)** with SCSS and Compass
++	**[i18nex](http://i18next.com/)**
++	**[Accounting](http://josscrowcroft.github.io/accounting.js/)**
 
 
 OAuth2

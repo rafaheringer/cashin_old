@@ -1,0 +1,36 @@
+<%=i18n.t('login.action') %>
+
+<div id="sidebarAcc<%=id %>" class="account <%=type %>">
+	<h3 >
+		<a href="#contas?acc=<%=id %>" title="<%=i18n.t('accounts.viewHistory') %>"><%= title %></a>
+		<span class="actions">
+			<span class="editSmall"><a href="#editarConta?id=<%=id %>" title="<%=i18n.t('accounts.edit') %>"></a></span>
+			<span class="removeSmall"><a href="#removerConta?id=<%=id %>" title="<%=i18n.t('accounts.remove') %>"></a></span>
+		</span>
+	</h3>
+	<ul class="tableList">
+		<li>Saldo: <span class="amount <% if(balance > 0) { %>positive<% } else {%>negative<% } %>"> <%=balance %></span></li>
+		<li class="subtitle"><%= (new Date()).getMonth() %></li>
+		<?php 
+            $gastos = $ganhos = $balanco = $creditos = 0;
+            foreach($transactions as $transaction):
+                if($transaction->account_from === $acc->id):
+					$transaction->amount < 0 ? $gastos += $transaction->amount : $ganhos += $transaction->amount;
+					if($transaction->type == "3"):
+						$gastos -= $transaction->amount;
+						$ganhos -= $transaction->amount;
+						$creditos += $transaction->amount;
+					endif;
+				elseif($transaction->account_to === $acc->id):
+					$ganhos += $transaction->amount;
+				endif;
+            endforeach;
+			$balanco = $ganhos + $gastos;
+        ?>
+		<li><?php if($acc->account_type_id == "1") echo "Utilizei:"; else echo "Despesas:"; ?> <span class="amount <?php if($gastos >= 0) echo 'positive'; else echo 'negative'; ?>"><?php echo moneyFormat($gastos, true) ?></span></li>
+		<li><?php if($acc->account_type_id == "1") echo "Paguei:"; else echo "Receitas:"; ?> <span class="amount <?php if($ganhos >= 0) echo 'positive'; else echo 'negative'; ?>"><?php echo moneyFormat($ganhos, true) ?></span></li>
+		<?php if($acc->account_type_id != "1"): ?> <li>Balanço do mês: <span class="amount <?php if($balanco >= 0) echo 'positive'; else echo 'negative'; ?>"><?php echo moneyFormat($balanco, true) ?></span></li><?php endif; ?>
+	</ul>
+	<ul class="actions">
+	<li class="addTrans"><a href="#adicionarTransacao?acc=<?php echo $acc->id ?>" title="Adicionar Transação">Adicionar transação</a></li>
+</ul>
